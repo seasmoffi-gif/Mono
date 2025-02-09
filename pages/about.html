@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About TeTo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b81;
+            --secondary: #ffe4e1;
+            --background: #fffaf0;
+            --text-dark: #333;
+            --text-light: #555;
+            --bubble-bg: #fff;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-dark);
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Cute Header */
+        .header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 10px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* TeTo Branding */
+        .teto-brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .te {
+            color: white;
+        }
+
+        .to {
+            color: );
+            font-weight: bold;
+        }
+
+        /* Cute Section Container */
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: var(--bubble-bg);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: var(--secondary);
+            padding: 12px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px var(--shadow);
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Social Links */
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.8rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+            color: #ff476c;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #ff476c;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cute Header -->
+    <div class="header">
+        <h1 class="teto-brand"><span class="te">Te</span><span class="to">To</span></h1>
+        <p>Your adorable anime streaming companion!</p>
+    </div>
+
+    <!-- About Section -->
+    <div class="container">
+        <h2 class="section-title">Who Are We?</h2>
+        <p class="about-text">
+            <strong>TeTo</strong> is a cute and simple anime streaming site that focuses on giving you a fun and minimal experience.
+            No clutter, no distractions—just pure anime enjoyment!
+        </p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <h2 class="section-title">Why You'll Love TeTo</h2>
+        <div class="features">
+            <div class="feature-item"><i class="fas fa-play-circle"></i> Watch anime in HD</div>
+            <div class="feature-item"><i class="fas fa-heart"></i> Save your favorites</div>
+            <div class="feature-item"><i class="fas fa-clock"></i> Stay updated with the latest releases</div>
+            <div class="feature-item"><i class="fas fa-search"></i> Find anime easily with our simple interface</div>
+        </div>
+    </div>
+
+    <!-- Follow Us -->
+    <div class="container">
+        <h2 class="section-title">Stay Connected!</h2>
+        <div class="social-links">
+
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+</body>
+</html>

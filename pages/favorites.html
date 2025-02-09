@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teto - Favorites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #c94b63;
+            --dark: #141414;
+            --light: #fff;
+            --gray: #808080;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0px 20px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* View Toggle Styles */
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .view-toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-size: 1.2rem;
+            margin-left: 15px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .view-toggle-btn.active {
+            color: var(--primary);
+            opacity: 1;
+        }
+
+        /* Favorites Container */
+        .favorites-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Grid View */
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* List View */
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .favorite-item {
+            background: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        /* Grid View Specific Styles */
+        .favorites-grid .favorite-item {
+            transform-origin: center;
+        }
+
+        .favorites-grid .favorite-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .favorites-grid .favorite-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .favorites-grid .favorite-info {
+            padding: 15px;
+        }
+
+        .favorites-grid .favorite-title {
+            font-size: 1.1rem;
+            margin: 0 0 10px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* List View Specific Styles */
+        .favorites-list .favorite-item {
+display: flex;
+align-items: center;
+padding: 15px;
+background: #1e1e1e;
+gap: 20px;
+}
+
+.favorites-list .favorite-link {
+display: flex;
+align-items: center;
+width: 100%;
+}
+
+.favorites-list .favorite-image {
+width: 100px;
+height: 150px;
+object-fit: cover;
+margin-right: 20px;
+border-radius: 5px;
+flex-shrink: 0;
+}
+
+.favorites-list .favorite-info {
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+}
+
+.favorites-list .favorite-title {
+font-size: 1.2rem;
+margin-bottom: 10px;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+.favorites-list .favorite-meta {
+margin-top: auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.favorites-list .remove-btn {
+position: static;
+margin-left: 15px;
+}
+
+        .favorite-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .favorite-rating {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .remove-btn:hover {
+            opacity: 0.9;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .favorite-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .favorite-item .remove-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .favorites-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+
+            .favorites-grid .favorite-image
+            {
+                height: 250px;
+            }
+
+            .view-toggle {
+                justify-content: center;
+            }
+           .favorites-list .favorite-item {
+flex-direction: row; 
+align-items: flex-start;
+text-align: left;
+padding: 15px;
+gap: 15px;
+}
+
+.favorites-list .favorite-link {
+flex-direction: row; /* Changed from column */
+align-items: flex-start;
+width: 100%;
+}
+
+.favorites-list .favorite-image {
+width: 80px; /* Adjusted size */
+height: 120px;
+margin: 0; /* Removed negative margins */
+order: 2; /* Moves image to right */
+border-radius: 5px;
+}
+
+.favorites-list .favorite-info {
+order: 1; /* Keeps content on left */
+flex-grow: 1;
+}
+
+.favorites-list .remove-btn {
+margin-right: 200px;
+margin-top: 0;
+}
+}
+ .navbar {
+   background-color: var(--dark);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 15px 20px;
+   position: sticky;
+   top: 0;
+   z-index: 100;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+ }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-te {
+    color: var(--light);
+  }
+
+  .logo-to {
+    color: var(--primary);
+  }
+ .search-container {
+   display: flex;
+   align-items: center;
+   flex-grow: 1;
+   max-width: 500px;
+   margin: 0 20px;
+ }
+
+ .search-input {
+   width: 100%;
+   padding: 10px 15px;
+   border-radius: 25px 0 0 25px;
+   border: none;
+   background-color: #222;
+   color: var(--light);
+ }
+
+ .search-button {
+   background-color: var(--primary);
+   color: var(--light);
+   border: none;
+   padding: 10px 15px;
+   border-radius: 0 25px 25px 0;
+   cursor: pointer;
+ }
+
+ .navbar-menu {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+ }
+
+ .navbar-link {
+   color: var(--light);
+   text-decoration: none;
+   transition: color 0.3s;
+ }
+
+ .navbar-link:hover {
+   color: var(--primary);
+ }
+   .favorites-link {
+    color: var(--light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .favorites-link:hover {
+    background: rgba(201, 75, 99, 0.1);
+  }
+
+  .favorites-link i {
+    color: var(--primary);
+    font-size: 1.2rem;
+  }
+
+  .favorites-text {
+    font-size: 1rem;
+  }
+
+
+ @media (max-width: 768px) {
+  .navbar {
+   justify-content: space-between;
+   padding: 15px;
+ }
+
+ .favorites-text {
+   display: none;
+ }
+
+ .favorites-link {
+   padding: 8px;
+ }
+
+ .search-container {
+   margin: 0 10px;
+   flex-grow: 1;
+ }
+
+ .logo {
+   font-size: 1.5rem;
+ }
+ }
+
+ /* Remove existing menu styles */
+ .mobile-menu-toggle,
+ .navbar-menu {
+   display: none !important;
+ }
+ }
+    </style>
+</head>
+<body>
+    <!-- Existing Navbar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-te">Te</span><span class="logo-to">to</span>
+        </a>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search anime...">
+            <button class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <a href="favorites.html" class="favorites-link">
+            <i class="fas fa-heart"></i>
+            <span class="favorites-text">Favorites</span>
+        </a>
+    </nav>
+
+    <div class="favorites-container">
+        <div class="view-toggle">
+            <button class="view-toggle-btn grid-view-btn active" aria-label="Grid View">
+                <i class="fas fa-th-large"></i>
+            </button>
+            <button class="view-toggle-btn list-view-btn" aria-label="List View">
+                <i class="fas fa-list"></i>
+            </button>
+        </div>
+
+        <h1><i class="fas fa-heart"></i> Favorite Anime</h1>
+
+        <div class="favorites-grid" id="favorites-grid">
+            <!-- Favorites will be inserted here -->
+        </div>
+
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <i class="fas fa-heart-broken" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>No favorites yet!<br>Add anime from their info pages.</p>
+        </div>
+    </div>
+
+    <script>
+        // View toggle functionality
+        // View toggle functionality
+const gridViewBtn = document.querySelector('.grid-view-btn');
+const listViewBtn = document.querySelector('.list-view-btn');
+const favoritesContainer = document.getElementById('favorites-grid');
+
+gridViewBtn.addEventListener('click', () => {
+  favoritesContainer.classList.remove('favorites-list');
+  favoritesContainer.classList.add('favorites-grid');
+  gridViewBtn.classList.add('active');
+  listViewBtn.classList.remove('active');
+  localStorage.setItem('favoritesView', 'grid');
+});
+
+listViewBtn.addEventListener('click', () => {
+  favoritesContainer.classList.remove('favorites-grid');
+  favoritesContainer.classList.add('favorites-list');
+  listViewBtn.classList.add('active');
+  gridViewBtn.classList.remove('active');
+  localStorage.setItem('favoritesView', 'list');
+});
+
+// Load favorites from localStorage
+function loadFavorites() {
+  const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  const grid = document.getElementById('favorites-grid');
+  const emptyState = document.getElementById('empty-state');
+
+  grid.innerHTML = '';
+
+  if (favorites.length === 0) {
+    emptyState.style.display = 'block';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+
+  favorites.forEach(anime => {
+    const card = document.createElement('div');
+    card.className = 'favorite-item';
+    card.innerHTML = `
+            <a href="info.html?id=${anime.id}" class="favorite-link">
+                <img src="${anime.image}" class="favorite-image" alt="${anime.title}">
+                <div class="favorite-info">
+                    <h3 class="favorite-title">${anime.title}</h3>
+                    <div class="favorite-meta">
+                        <span class="favorite-rating">
+                            <i class="fas fa-star"></i> ${anime.rating || 'N/A'}
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <button class="remove-btn" data-id="${anime.id}">Remove</button>
+        `;
+    grid.appendChild(card);
+  });
+
+  // Restore view mode
+  const savedView = localStorage.getItem('favoritesView');
+  if (savedView === 'list') {
+    grid.classList.remove('favorites-grid');
+    grid.classList.add('favorites-list');
+    listViewBtn.classList.add('active');
+    gridViewBtn.classList.remove('active');
+  } else {
+    grid.classList.remove('favorites-list');
+    grid.classList.add('favorites-grid');
+    gridViewBtn.classList.add('active');
+    listViewBtn.classList.remove('active');
+  }
+}
+
+// Remove favorite
+document.addEventListener('click', (e) => {
+  const removeBtn = e.target.closest('.remove-btn');
+  if (removeBtn) {
+    const animeId = removeBtn.getAttribute('data-id');
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Ensure string comparison
+    favorites = favorites.filter(anime => anime.id.toString() !== animeId.toString());
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Reload favorites to update the view
+    loadFavorites();
+
+    // Show toast notification
+    showToast(`Removed from favorites`);
+  }
+});
+
+// Toast notification function
+function showToast(message) {
+  // Remove any existing toasts first
+  const existingToast = document.querySelector('.toast-notification');
+  if (existingToast) {
+    existingToast.remove();
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary);
+        color: var(--light);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    `;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
+// Initial load
+loadFavorites();
+    </script>
+</body>
+</html>

@@ -787,7 +787,7 @@ return fetchWithCORS(url, proxyIndex + 1);
 }
 
         async function getZoroId() {
-            const response = await fetch(`https://api.malsync.moe/mal/anime/anilist:${anilistId}`);
+            const response = await fetch(`https://api.allorigins.win/raw?url=https://api.malsync.moe/mal/anime/anilist:${anilistId}`);
             if (!response.ok) throw new Error("MALSync API failed");
             const data = await response.json();
             return Object.values(data.Sites.Zoro)[0].url.split("/").pop();

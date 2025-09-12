@@ -2,21 +2,24 @@
     root * /srv
     file_server
 
-    # Önce /images/* doğrudan
+    # /images/* doğrudan
     handle_path /images/* {
         root * /srv
         file_server
     }
 
-    # / -> index.html
+    # /index.html veya / -> index.html
     handle_path / {
         rewrite * /index.html
         file_server
     }
 
-    # diğer her şey -> /pages/{request}.html
-    handle_path /* {
-        try_files /pages/{path}.html /index.html
-        file_server
+    # .html gizleme: /foo => /pages/foo.html
+    handle_path /{name} {
+        try_files /pages/{name}.html /index.html
     }
+
+    # .html yazılırsa redirect /foo.html -> /foo
+    @html path_regexp html ^/(.+)\.html$
+    redir @html /{re.html.1} 301
 }

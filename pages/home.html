@@ -965,7 +965,7 @@ border: 2px solid var(--primary);
 </head>
 <body>
   <nav class="navbar">
-  <a href="index.html" class="logo">
+  <a href="/" class="logo">
     <span class="logo-te">Te</span><span class="logo-to">To</span>
   </a>
 
@@ -977,7 +977,7 @@ border: 2px solid var(--primary);
     <div class="search-results" id="search-results"></div>
   </div>
 
-  <a href="favorites.html" class="favorites-link">
+  <a href="favorites" class="favorites-link">
     <i class="fas fa-heart"></i>
     <span class="favorites-text">Favorites</span>
   </a>
@@ -993,7 +993,7 @@ border: 2px solid var(--primary);
   <div class="popular-header">
     <h2 class="popular-title">
       <i class="fas fa-fire"></i> Popular Anime</h2>
-    <a href="teto.html">
+    <a href="teto">
       <img src="../images/teto.png" alt="teto" class="mascot-image">
     </a>
    
@@ -1031,9 +1031,9 @@ border: 2px solid var(--primary);
         <p class="footer-text">© 2025 TeTo. All rights reserved.</p>
 
         <div class="footer-links">
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
 
-            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="about"><i class="fas fa-info-circle"></i> About</a>
         </div>
 
         <p class="footer-disclaimer">
@@ -1085,7 +1085,7 @@ border: 2px solid var(--primary);
             results.slice(0, 8).forEach(anime => {
                 const item = document.createElement('a');
                 item.className = 'search-result-item';
-                item.href = `info.html?id=${anime.id}`;
+                item.href = `info?id=${anime.id}`;
                 item.innerHTML = `
                     <img src="${anime.image}" class="search-result-image">
                     <div>
@@ -1146,7 +1146,7 @@ border: 2px solid var(--primary);
                 <div class="swiper-slide">
                     <img src="${anime.image}" alt="${anime.title.english}" class="anime-image">
                     <div class="content-overlay">
-                        <a href="info.html?id=${anime.id}" class="watch-now-button">
+                        <a href="info?id=${anime.id}" class="watch-now-button">
                             <i class="fas fa-play"></i>Watch Now
                         </a>
                         <h2 class="anime-title">${anime.title.english  || anime.title.romaji}</h2>
@@ -1181,7 +1181,7 @@ border: 2px solid var(--primary);
 
          function createPopularItem(anime) {
             return `
-                <a href="info.html?id=${anime.id}" class="popular-item">
+                <a href="info?id=${anime.id}" class="popular-item">
                     <img src="${anime.image}" alt="${anime.title.romaji}" class="popular-image">
                     <h3 class="popular-anime-title">${anime.title.english}</h3>
                 </a>
@@ -1358,7 +1358,7 @@ async function fetchRecentEpisodes(page) {
 
 function createRecentItem(episode) {
   return `
-    <a href="info.html?id=${episode.media.id}" class="recent-item">
+    <a href="info?id=${episode.media.id}" class="recent-item">
       <div class="image-container">
         <img src="${episode.media.coverImage.large}" alt="${episode.media.title.english || episode.media.title.romaji}" class="recent-image">
         

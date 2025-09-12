@@ -373,7 +373,7 @@ margin-top: 0;
 <body>
     <!-- Existing Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             <span class="logo-te">Te</span><span class="logo-to">to</span>
         </a>
 
@@ -384,7 +384,7 @@ margin-top: 0;
             </button>
         </div>
 
-        <a href="favorites.html" class="favorites-link">
+        <a href="favorites" class="favorites-link">
             <i class="fas fa-heart"></i>
             <span class="favorites-text">Favorites</span>
         </a>
@@ -454,7 +454,7 @@ function loadFavorites() {
     const card = document.createElement('div');
     card.className = 'favorite-item';
     card.innerHTML = `
-            <a href="info.html?id=${anime.id}" class="favorite-link">
+            <a href="info?id=${anime.id}" class="favorite-link">
                 <img src="${anime.image}" class="favorite-image" alt="${anime.title}">
                 <div class="favorite-info">
                     <h3 class="favorite-title">${anime.title}</h3>

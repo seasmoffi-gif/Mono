@@ -583,7 +583,7 @@
 </head>
 <body>
    <nav class="navbar">
-  <a href="index.html" class="logo">
+  <a href="/" class="logo">
     <span class="logo-te">Te</span><span class="logo-to">To</span>
   </a>
 
@@ -595,7 +595,7 @@
     <div class="search-results" id="search-results"></div>
   </div>
 
-  <a href="favorites.html" class="favorites-link">
+  <a href="favorites" class="favorites-link">
     <i class="fas fa-heart"></i>
     <span class="favorites-text">Favorites</span>
   </a>
@@ -647,9 +647,9 @@
         <p class="footer-text">© 2025 TeTo. All rights reserved.</p>
 
         <div class="footer-links">
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
 
-            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="about"><i class="fas fa-info-circle"></i> About</a>
         </div>
 
         <p class="footer-disclaimer">
@@ -713,7 +713,7 @@ const searchInput = document.getElementById('search-input');
             results.slice(0, 8).forEach(anime => {
                 const item = document.createElement('a');
                 item.className = 'search-result-item';
-                item.href = `info.html?id=${anime.id}`;
+                item.href = `info?id=${anime.id}`;
                 item.innerHTML = `
                     <img src="${anime.image}" class="search-result-image">
                     <div>
@@ -1042,7 +1042,7 @@ function displayRecommendations(recommendations) {
     }
 
     container.innerHTML = recommendations.map(anime => `
-        <a href="info.html?id=${anime.id}" class="recommendation-card">
+        <a href="info?id=${anime.id}" class="recommendation-card">
             <img src="${anime.coverImage.large}" alt="${anime.title.english || anime.title.romaji}" class="recommendation-image">
             <div class="recommendation-info">
                 <h3 class="recommendation-title">${anime.title.english || anime.title.romaji}</h3>

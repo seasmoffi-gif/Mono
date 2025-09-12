@@ -941,7 +941,7 @@
 </head>
 <body>
    <nav class="navbar">
-  <a href="index.html" class="logo">
+  <a href="/" class="logo">
     <span class="logo-te">Te</span><span class="logo-to">To</span>
   </a>
 
@@ -953,7 +953,7 @@
     <div class="search-results" id="search-results"></div>
   </div>
 
-  <a href="favorites.html" class="favorites-link">
+  <a href="favorites" class="favorites-link">
     <i class="fas fa-heart"></i>
     <span class="favorites-text">Favorites</span>
   </a>
@@ -995,9 +995,9 @@
         <p class="footer-text">© 2025 TeTo. All rights reserved.</p>
 
         <div class="footer-links">
-            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="/"><i class="fas fa-home"></i> Home</a>
 
-            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            <a href="about"><i class="fas fa-info-circle"></i> About</a>
         </div>
 
         <p class="footer-disclaimer">
@@ -1046,7 +1046,7 @@ function displayResults(results) {
   results.slice(0, 8).forEach(anime => {
     const item = document.createElement('a');
     item.className = 'search-result-item';
-    item.href = `info.html?id=${anime.id}`;
+    item.href = `info?id=${anime.id}`;
     item.innerHTML = `
                     <img src="${anime.image}" class="search-result-image">
                     <div>
@@ -1190,7 +1190,7 @@ searchInput.addEventListener('input', (e) => {
                         <div style="flex:1">
                             <h1>${title.userPreferred}</h1>
                             <div class="action-buttons">
-                                <a href=watch.html?id=${animeData.id}#" class="btn btn-primary" id="watch-btn">
+                                <a href=watch?id=${animeData.id}#" class="btn btn-primary" id="watch-btn">
                                     <i class="fas fa-play"></i> Watch Now
                                 </a>
                                 <button class="btn btn-secondary" id="favorite-btn">
@@ -1290,7 +1290,7 @@ function createRelatedSection(relations) {
             return createInfoSection('Related Anime', `
                 <div class="related-grid">
                     ${relations.map(rel => `
-                        <a href="info.html?id=${rel.id}" class="related-card">
+                        <a href="info?id=${rel.id}" class="related-card">
                             <div class="related-badge" data-format="${rel.format}">
                                 <i class="fas fa-${getFormatIcon(rel.format)}"></i>
                                 ${rel.format}
@@ -1385,7 +1385,7 @@ const STREAMING_ICONS = {
                         <div class="error-message">
                             <h2>Error Loading Anime Details</h2>
                             <p>${error.message}</p>
-                            <a href="index.html" class="btn btn-primary">Return to Home</a>
+                            <a href="/" class="btn btn-primary">Return to Home</a>
                         </div>
                     </div>
                 `;
@@ -1399,7 +1399,7 @@ const STREAMING_ICONS = {
                 <div class="container">
                     <div class="error-message">
                         <h2>No Anime Selected</h2>
-                        <a href="index.html" class="btn btn-primary">Return to Home</a>
+                        <a href="/" class="btn btn-primary">Return to Home</a>
                     </div>
                 </div>
             `;

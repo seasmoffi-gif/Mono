@@ -6,6 +6,4 @@ services:
     ports:
       - "3030:80"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html:ro
-      - ./images:/usr/share/nginx/html/images:ro
-      - ./pages:/usr/share/nginx/html/pages:ro
+      - ./:/usr/share/nginx/html:ro

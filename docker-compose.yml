@@ -4,6 +4,6 @@ services:
   web:
     image: httpd:alpine
     expose:
-      - 3030
+      - 80
     volumes:
       - ./:/usr/local/apache2/htdocs/:ro

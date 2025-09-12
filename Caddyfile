@@ -1,0 +1,22 @@
+:80 {
+    root * /srv
+    file_server
+
+    # Önce /images/* doğrudan
+    handle_path /images/* {
+        root * /srv
+        file_server
+    }
+
+    # / -> index.html
+    handle_path / {
+        rewrite * /index.html
+        file_server
+    }
+
+    # diğer her şey -> /pages/{request}.html
+    handle_path /* {
+        try_files /pages/{path}.html /index.html
+        file_server
+    }
+}

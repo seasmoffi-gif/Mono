@@ -915,8 +915,12 @@ return fetchWithCORS(url, proxyIndex + 1);
             });
         }
 
-        function renderEpisodes(episodes) {
+        function renderEpisodes(episodess) {
             const episodesContainer = document.getElementById("episodes");
+            const episodes = Array.from({ length: episodess }, (_, i) => ({
+        episodeId: i + 1,
+        number: i + 1
+    }));
             episodesContainer.innerHTML = episodes.map(ep => `
                 <div class="episode${selectedEpisodeId === ep.episodeId ? ' selected' : ''}" 
                      data-id="${ep.episodeId}">

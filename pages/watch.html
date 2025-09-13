@@ -885,7 +885,6 @@ return fetchWithCORS(url, proxyIndex + 1);
             const serverContainer = document.getElementById("server-container");
             serverContainer.innerHTML = `
                 <div class="server-row">
-                    <span class="server-label"><i class="fa-solid fa-closed-captioning"></i> Sub</span>
                     ${servers.map(s => `
                         <button class="server-button${s.fansub === selectedServer ? ' selected' : ''}" 
                                 data-server="${s.fansub}" 

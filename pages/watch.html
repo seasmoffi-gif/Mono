@@ -827,38 +827,32 @@
          }
          
          function renderEpisodes(totalEpisodes) {
-    const episodesContainer = document.getElementById("episodes");
-
-    // totalEpisodes kadar dizi oluştur
-    const episodes = Array.from({ length: totalEpisodes }, (_, i) => ({
+           const episodesContainer = document.getElementById("episodes");
+           const episodes = Array.from({ length: totalEpisodes }, (_, i) => ({
         episodeId: i + 1,
         number: i + 1
     }));
-
-    episodesContainer.innerHTML = episodes.map(ep => `
-        <div class="episode${selectedEpisodeId == ep.episodeId ? ' selected' : ''}" 
-             data-id="${ep.episodeId}">
-            ${ep.number}
-        </div>
-    `).join('');
-
-    document.querySelectorAll(".episode").forEach(item => {
-        item.addEventListener("click", async () => {
-            document.querySelectorAll(".episode").forEach(el => el.classList.remove("selected"));
-            item.classList.add("selected");
-            selectedEpisodeId = item.dataset.id;
-            localStorage.setItem("selectedEpisodeId", selectedEpisodeId);
-
-            // Update episode number display
-            const episodeNumber = item.textContent.trim();
-            document.querySelector('.episode-text').textContent = `episode ${episodeNumber}`;
-
-            const servers = await getServers(selectedEpisodeId);
-            renderServers(servers);
-        });
-    });
-}
-
+           episodesContainer.innerHTML = episodes.map(ep => `
+                   
+         						<div class="episode${selectedEpisodeId === ep.episodeId ? ' selected' : ''}" 
+                        data-id="${ep.episodeId}">
+                       ${ep.number}
+                   </div>
+               `).join('');
+           document.querySelectorAll(".episode").forEach(item => {
+             item.addEventListener("click", async () => {
+               document.querySelectorAll(".episode").forEach(el => el.classList.remove("selected"));
+               item.classList.add("selected");
+               selectedEpisodeId = item.dataset.id;
+               localStorage.setItem("selectedEpisodeId", selectedEpisodeId);
+               // Update episode number display
+               const episodeNumber = item.textContent.trim();
+               document.querySelector('.episode-text').textContent = `episode ${episodeNumber}`;
+               const servers = await getServers(selectedEpisodeId);
+               renderServers(servers);
+             });
+           });
+         }
          // Episode handling
          async function getServers(episodeId) {
            const data = await fetchWithCORS(`${HIANIME_BASE}episode/servers?animeEpisodeId=${encodeURIComponent(episodeId)}`);

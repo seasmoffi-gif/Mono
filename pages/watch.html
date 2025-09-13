@@ -952,9 +952,10 @@ return fetchWithCORS(url, proxyIndex + 1);
         }
 
         // Episode handling
-        async function getServers(episodeId) {
+        async function getServers(ep) {
+        	const malid = urlParams.get("id");
             const data = await fetchWithCORS(
-                 `${HIANIME_BASE}episode/servers?animeEpisodeId=${encodeURIComponent(episodeId)}`);
+                 `${MONO_API }/getstream/${malid}/${ep}/`);
 return data.data;
 }
 

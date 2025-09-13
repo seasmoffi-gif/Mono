@@ -961,6 +961,7 @@ return data.data;
 async function getEpisodes(zoroId) {
   const data = await fetch(`${MONO_API}/getanime/${zoroId}`);
   allEpisodes = data.total;
+  console.log(data.total)
   renderEpisodes(allEpisodes);
 
   if (selectedEpisodeId) {

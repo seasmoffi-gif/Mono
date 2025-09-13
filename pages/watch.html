@@ -675,6 +675,7 @@
 };
         const M3U8_PROXY = "https://m3u8-proxy-liard.vercel.app/m3u8-proxy?url=";
         const HIANIME_BASE = "https://aniwatchv2.vercel.app/api/v2/hianime/";
+        const MONO_API = "https://anime.vulnton.org/api";
 
         let player = null;
         let hls = null;
@@ -951,8 +952,8 @@ return data.data;
 }
 
 async function getEpisodes(zoroId) {
-  const data = await fetchWithCORS(`${HIANIME_BASE}anime/${zoroId}/episodes`);
-  allEpisodes = data.data.episodes;
+  const data = await fetch(`${MONO_API}/getanime/${zoroId}`);
+  allEpisodes = data.total;
   renderEpisodes(allEpisodes);
 
   if (selectedEpisodeId) {
@@ -977,8 +978,8 @@ document.getElementById("searchEpisodes").addEventListener("input", (e) => {
 async function init() {
   try {
     player = initPlayer();
-    const zoroId = await getZoroId();
-    await getEpisodes(zoroId);
+    const malid = urlParams.get("id");
+    await getEpisodes(malid);
   } catch (error) {
     console.error('Initialization error:', error);
     const videoContainer = document.getElementById('video-container');

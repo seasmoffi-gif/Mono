@@ -959,9 +959,10 @@ return data.data;
 }
 
 async function getEpisodes(zoroId) {
-  const data = await fetch(`${MONO_API}/getanime/${zoroId}`);
-  allEpisodes = data.total;
-  console.log(data.total)
+  const response = await fetch(`${MONO_API}/getanime/${zoroId}`);
+  const data = await response.json(); // JSON formatına çevir
+  allEpisodes = data.total;          // Artık total kullanılabilir
+  console.log(allEpisodes)
   renderEpisodes(allEpisodes);
 
   if (selectedEpisodeId) {

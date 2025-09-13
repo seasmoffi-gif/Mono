@@ -954,9 +954,11 @@ return fetchWithCORS(url, proxyIndex + 1);
         // Episode handling
         async function getServers(ep) {
         	const malid = urlParams.get("id");
-            const data = await fetchWithCORS(
+            const data = await fetch(
                  `${MONO_API }/getstream/${malid}/${ep}/`);
-return data.data;
+             const veri= await data.json();
+             console.log(veri)
+return veri;
 }
 
 async function getEpisodes(zoroId) {

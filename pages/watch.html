@@ -886,24 +886,15 @@ return fetchWithCORS(url, proxyIndex + 1);
             serverContainer.innerHTML = `
                 <div class="server-row">
                     <span class="server-label"><i class="fa-solid fa-closed-captioning"></i> Sub</span>
-                    ${servers.sub.map(s => `
-                        <button class="server-button${s.serverName === selectedServer ? ' selected' : ''}" 
-                                data-server="${s.serverName}" 
+                    ${servers.map(s => `
+                        <button class="server-button${s.fansub === selectedServer ? ' selected' : ''}" 
+                                data-server="${s.fansub}" 
                                 data-category="sub">
                             ${s.serverName}
                         </button>
                     `).join('')}
                 </div>
-                <div class="server-row">
-                    <span class="server-label"><i class="fas fa-microphone"></i> Dub</span>
-                    ${servers.dub.map(s => `
-                        <button class="server-button${s.serverName === selectedServer ? ' selected' : ''}" 
-                                data-server="${s.serverName}" 
-                                data-category="dub">
-                            ${s.serverName}
-                        </button>
-                    `).join('')}
-                </div>
+                
             `;
 
             document.querySelectorAll(".server-button").forEach(button => {
